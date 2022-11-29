@@ -1,8 +1,11 @@
-
+import Tools from "./assets/Tools.js"
         let index
 
         select.focus()
 
+        /**
+         * REMPLIR LA BALISE <select/> AVEC LES TITRE jsonDatas[index].h
+         */
         for(index in jsonDatas){
             let opt = document.createElement('option')
             opt.value = index
@@ -12,6 +15,10 @@
             select.append(opt)
         }
 
+        /**
+         * REPÈRE LE HASH DE L'URL LORSQUE LE CLIENT ARRIVE SUR LA PAGE
+         * ET CHARGE L'<option/> DU <select/> CORRESPONDANTE 
+         */
         let s_array = Array.from(select.querySelectorAll('option'))
         if(document.location.hash != ""){
             for(let a in s_array)if("#"+s_array[a].value == document.location.hash){
@@ -22,6 +29,10 @@
             }
         }
          
+        /**
+         * PERMET DE SELECTIONNER UN NOUVEL EXERCICE
+         * @param {event onchange} that CE N'EST PAS VRAIMENT UTILISÉ xD
+         */
         function selectOnchange(that){
             // console.log(that);
             // alert(select.selectedIndex)
@@ -50,6 +61,12 @@
             })
 
         }
+
+                
+        /**
+         * PERMET DE PASSER À L'EXERCICE ADJACENT
+         * @param {INT} smthg CORRENSPOND AU NUMÉRO DE L'EXERCICE
+         */
         function move(smthg){
             if(typeof smthg == "undefined" && select.selectedIndex>1){
                 select.selectedIndex = select.selectedIndex - 1
