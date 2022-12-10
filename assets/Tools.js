@@ -7,7 +7,7 @@ export default class Tools {
         Object.assign(this,props)
     }
 
-    showSourceOnIframeLoad(src_iframe = "iframe_"){
+    static showSourceOnIframeLoad(src_iframe = "iframe_"){
 
         const iframe_ = document.getElementById(src_iframe);
 
