@@ -1,5 +1,10 @@
 import Tools from "./assets/Tools.js"
         let index
+        , filRouge_origin_URI = ""
+        , github_account = "mentor-OC-archist"
+        , repo_name = "___________TO_DEFINE_______________"
+        , default_working_branch = "develop"
+        , prefix_host = "."
         //, tools = new Tools()
         
         //Tools.showSourceOnIframeLoad()
@@ -47,10 +52,42 @@ import Tools from "./assets/Tools.js"
             document.location.hash = select.value
             // console.log(select.value);
 
-            iframe.src = "./_/"+select.value
-            iframe_enonce.src = "./_/"+select.value+"/ENONCE.html"
-            iframe_sol.src = "./_/"+select.value+"/_/SOLUTION/"
-            iframe_codebase.src = "./_/"
+
+
+            if(location.host.indexOf('localhost')==-1)prefix_host = "https://raw.githubusercontent.com/"+github_account+"/"+repo_name+"/"+default_working_branch
+
+            iframe.src = prefix_host+"/_/"+select.value
+            iframe_enonce.src = prefix_host+"/_/"+select.value+"/ENONCE.html"
+            iframe_sol.src = prefix_host+"/_/"+select.value+"/_/SOLUTION/"
+            iframe_codebase.src = prefix_host+"/_/"
+
+
+
+            _codepens.innerHTML = opt.data.codepens && opt.data.codepens.map((url,i) => `<a href="${url}" target="_blank">Codepen ${select.value+" - "+(i+1)}</a>`)
+
+        
+            if(opt?.data?.begin!==false){
+                _begin.href = filRouge_origin_URI+"/tree/"+select.value+"-begin"
+                _begin.innerHTML = select.value+"-begin"
+            }
+            if(opt?.data?.begin!==false){
+                _sol.href = filRouge_origin_URI+"/tree/"+select.value+"-solution"
+                _sol.innerHTML = select.value+"-solution"
+            }
+            _SC.href = opt?.data?.liens?.[0]?.indexOf('vimeo') != -1 
+                ? opt.data.liens[0]
+                : ""
+            _SC.innerHTML = opt.data.liens?.[0].indexOf('vimeo') != -1 
+                ? "SCREENCAST vidéo"
+                : ""
+            
+            if(opt.data.begin != "" && opt.data.begin.indexOf('codepen') == -1){
+                copypast.className = ""
+                from_root.innerHTML = "cd ./_/begins/"+select.value+"; npm run start"
+                from_inner.innerHTML = "cd ../"+select.value+"; npm run start"
+            }else copypast.className = "off"
+
+
 
             h1.innerHTML = p.innerHTML = tasks_p.innerHTML = tasks_ol.innerHTML = ""
             h1.innerHTML = opt.data.h
@@ -88,3 +125,6 @@ import Tools from "./assets/Tools.js"
         }
         document.querySelector("header>a:first-of-type").addEventListener('click', (e)=>{e.preventDefault();move();})
         document.querySelector("header>a:last-of-type").addEventListener('click', (e)=>{e.preventDefault();move(1);})
+
+        document.querySelectorAll("iframe+span.enhanced").forEach(ifr => { console.log(ifr); ifr.addEventListener('click', (self) => { window.open(self.target.previousSibling.previousSibling.src, '_blank') }) })
+        

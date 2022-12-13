@@ -36,9 +36,21 @@
 
         <p id="tasks_p"></p>
         
+        <p id="copypast">
+            <b>Cliquer sur l'un des 2 textes ci-dessous, pour le coller dans le terminal et arriver au projet concerné</b>
+            Depuis la racine de projet: <span id="from_root"></span> 
+            Depuis un exercice antérieur ("/_/begins/P#C#/"): <span id="from_inner"></span>
+        </p>
+        <nav id="_codepens" href="#"></nav>
+        <a id="_begin" href="#" target="_blank"></a>
+        <a id="_sol" href="#" target="_blank"></a>
+        <a id="_SC" href="#" target="_blank"></a>
+        <button onclick="iframe.src=iframe.src">⟳</button>
+        
+        
         <iframe id="iframe_enonce" src="" frameborder="0"></iframe>
         <iframe id="iframe" src="view-source:http://127.0.0.1:5500/index.html" frameborder="0"></iframe>
-        <div class="">
+        <div id="showmore">
             <button href="#" onclick="this.parentNode.classList.toggle('show')">
                 <span>Show (####) codes</span>
                 <span>^</span>
@@ -69,7 +81,10 @@
     </section>
 
     <footer>
-        <a title="....Lien vers ressources...." target="_blank" href="####"><img src="./assets/img/oc.ico" alt="cours OC"></a>
+        <a title="Lien ver le cours OC" target="_blank" href="####"><img src="./assets/img/oc.ico" alt="cours OC"></a>
+        <a title="Lien vers les codepen liés à ce cours" target="_blank" href="####"><img src="./assets/img/codepen.webp" alt="Collection codepen lié à ce cours OC"></a>
+        <a title="Lien vers le repo fil-rouge d'origine liés à ce cours" target="_blank" href="####"><img src="./assets/img/github.png" alt="repo github lié à ce cours OC"></a>
+        <a title="Lien vers le Github de cette page" target="_blank" href="https://github.com/mentor-OC-archist/###"><img src="./assets/img/this_repo.pjg" alt="repo mentor-archist"></a>
         <ul>
             <li>....DESCRIPTION....</li>
         </ul>
